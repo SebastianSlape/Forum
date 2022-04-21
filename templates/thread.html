@@ -43,6 +43,11 @@
         <div class="comments">
             {% for comment in thread.comments %}
             <div class="comment">
+                {% if moderator == True %}
+                <form action="/thread/{{thread.id}}/comment/{{comment.id}}/delete" class="control" method="POST">
+                    <input type="submit" value="Delete Comment" id="submit">
+                </form>
+                {% endif %}
                 <div class="top-comment">
                     <p class="user">
                         {{comment.author}}

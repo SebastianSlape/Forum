@@ -75,6 +75,26 @@ def delete(id):
     else:
         return redirect('/')
 
+@app.route('/thread/<int:threadID>/comment/<int:commentID>/delete', methods=['POST', 'GET'])
+def commentDelete(threadID,commentID):
+    userIP = request.remote_addr
+    moderator = False
+    if userIP == "192.168.0.1":
+        moderator = True
+    if moderator == False:
+        return redirect('/')
+    if request.method == 'POST':
+        comment = Comment.query.get_or_404(commentID)
+        try:
+            db.session.delete(comment)
+            db.session.commit()
+            return redirect(f"/thread/{threadID}")
+        except:
+            return 'There was an issue deleting the comment'
+
+    else:
+        return redirect('/')
+
 @app.route('/thread/<int:id>', methods=['POST', 'GET'])
 def thread(id):
     userIP = request.remote_addr

@@ -48,7 +48,6 @@ button {
 
 nav {
     background-color: #222222;
-    padding: 0 40px;
 }
 
 .top-bar {
@@ -98,6 +97,12 @@ nav {
 
 .header {
     display: inline-block;
+}
+
+.top-comment {
+    display: flex;
+    color: grey;
+    font-size: 12px;
 }
 
 .meta, .top-comment {
