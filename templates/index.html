@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Task Master</title>
+<title>Forum</title>
 {% endblock %}
 
 {% block body %}
 <div class="content">
     <div class="main">
+        {% if moderator == True %}
+        <h4>Hello Janny</h4>
+        {% endif %}
         <h4>Make A Thread</h4>
         <div class="form">
             <form action="/" method="POST">
@@ -20,6 +23,7 @@
         <h4 style="text-align: center">There are no threads. Create one above!</h4>
         {% else %}
             {% for thread in threads %}
+            <hr>
             <div class="row">
                 <a href="/thread/{{thread.id}}">
                     <div class="meta">
@@ -35,10 +39,15 @@
                     </h4>
                     <div class="meta">
                         <p class="comment-count">
-                          
+                            {{thread.comments|length}} Comments
                         </p>
                     </div>
                 </a>
+                {% if moderator == True %}
+                <form action="/delete/{{thread.id}}" class="control" method="POST">
+                    <input type="submit" value="Delete Thread" id="submit">
+                </form>
+                {% endif %}
             </div>
             {% endfor %}
         {% endif %}

@@ -31,6 +31,10 @@ class Comment(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    userIP = request.remote_addr
+    moderator = False
+    if userIP == "192.168.0.1":
+        moderator = True
     if request.method == 'POST':
         thread_title = request.form['title']
         thread_author = request.form['author']
@@ -47,10 +51,37 @@ def index():
 
     else:
         threads = Thread.query.order_by(Thread.date).all()
-        return render_template('index.html', threads=threads)
+        return render_template('index.html', threads=threads, moderator=moderator)
+
+@app.route('/delete/<int:id>', methods=['POST', 'GET'])
+def delete(id):
+    userIP = request.remote_addr
+    moderator = False
+    if userIP == "192.168.0.1":
+        moderator = True
+    if moderator == False:
+        return redirect('/')
+    if request.method == 'POST':
+        thread = Thread.query.get_or_404(id)
+        try:
+            for comment in thread.comments:
+                db.session.delete(comment)
+            db.session.delete(thread)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'There was an issue deleting the thread'
+
+    else:
+        return redirect('/')
 
 @app.route('/thread/<int:id>', methods=['POST', 'GET'])
 def thread(id):
+    userIP = request.remote_addr
+    moderator = False
+    if userIP == "192.168.0.1":
+        moderator = True
+
     thread = Thread.query.get_or_404(id)
 
     if request.method == 'POST':
@@ -67,7 +98,7 @@ def thread(id):
             return 'There was an issue adding your comment'
 
     else:
-        return render_template('thread.html', thread=thread)
+        return render_template('thread.html', thread=thread, moderator=moderator)
 
 if __name__ == "__main__":
     app.run(debug=True, host="192.168.0.140", port=80)

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Task Master</title>
+<title>Forum</title>
 {% endblock %}
 
 {% block body %}
@@ -24,11 +24,15 @@
             </p>
             <div class="meta">
                 <p class="comment-count">
-                    comments
+                    {{thread.comments|length}} Comments
                 </p>
             </div>
-            
         </div>
+        {% if moderator == True %}
+        <form action="/delete/{{thread.id}}" class="control" method="POST">
+            <input type="submit" value="Delete Thread" id="submit">
+        </form>
+        {% endif %}
         <div class="form">
             <form action="/thread/{{thread.id}}" method="POST">
                 <input type="text" name="author" id="author" placeholder="Author">

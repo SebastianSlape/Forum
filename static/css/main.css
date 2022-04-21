@@ -34,7 +34,7 @@ p {
     display: block;
     width: 80%;
     height: 80px;
-    vertical-align: top;
+    resize: none;
 }
 
 #submit {
@@ -46,9 +46,19 @@ button {
     margin: 10px 0;
 }
 
-.top-bar {
+nav {
     background-color: #222222;
     padding: 0 40px;
+}
+
+.top-bar {
+    padding: 0px 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.top-bar > h1 {
+    font-size: 2.5em;
 }
 
 .main {
@@ -76,6 +86,18 @@ button {
 
 .row {
     padding: 5px 0;
+}
+
+.row > a {
+    display: inline-block;
+}
+
+.control {
+    float: right;
+}
+
+.header {
+    display: inline-block;
 }
 
 .meta, .top-comment {
