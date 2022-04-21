@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="main">
+        <h4>Make A Thread</h4>
+        <div class="form">
+            <form action="/" method="POST">
+                <input type="text" name="title" id="title" placeholder="Title">
+                <input type="text" name="author" id="author" placeholder="Author">
+                <textarea type="text" name="content" id="content" placeholder="Content"></textarea>
+                <input type="submit" value="Create Thread" id="submit">
+            </form>
+        </div>
+        {% if threads|length < 1 %}
+        <h4 style="text-align: center">There are no threads. Create one above!</h4>
+        {% else %}
+            {% for thread in threads %}
+            <div class="row">
+                <a href="/thread/{{thread.id}}">
+                    <div class="meta">
+                        <p class="author">
+                            {{thread.author}}
+                        </p>
+                        <p class="timestamp">
+                            {{thread.date.date()}}
+                        </p>
+                    </div>
+                    <h4 class="title">
+                        {{thread.title}}
+                    </h4>
+                    <div class="meta">
+                        <p class="comment-count">
+                          
+                        </p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

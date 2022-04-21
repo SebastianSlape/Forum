@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="main">
+        <div class="header">
+            <div class="meta">
+                <p class="author">
+                    {{thread.author}}
+                </p>
+                <p class="timestamp">
+                    {{thread.date.date()}}
+                </p>
+            </div>
+            <h4 class="title">
+                {{thread.title}}
+            </h4>
+            <p class="content">
+                {{thread.content}}
+            </p>
+            <div class="meta">
+                <p class="comment-count">
+                    comments
+                </p>
+            </div>
+            
+        </div>
+        <div class="form">
+            <form action="/thread/{{thread.id}}" method="POST">
+                <input type="text" name="author" id="author" placeholder="Author">
+                <textarea type="text" name="content" id="content" placeholder="Content"></textarea>
+                <input type="submit" value="Create Comment" id="submit">
+            </form>
+        </div>
+        <div class="comments">
+            {% for comment in thread.comments %}
+            <div class="comment">
+                <div class="top-comment">
+                    <p class="user">
+                        {{comment.author}}
+                    </p>
+                    <p class="comment-ts">
+                        {{thread.date.date()}}
+                    </p>
+                </div>
+                <div class="comment-content">
+                    {{comment.content}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
