@@ -36,9 +36,9 @@ def index():
     if userIP == "192.168.0.1":
         moderator = True
     if request.method == 'POST':
-        thread_title = request.form['title'].lstrip()
-        thread_author = request.form['author'].lstrip()
-        thread_content = request.form['content'].lstrip()
+        thread_title = request.form['title']
+        thread_author = request.form['author']
+        thread_content = request.form['content']
         
         new_thread = Thread(title=thread_title,author=thread_author,content=thread_content)
 
@@ -105,8 +105,8 @@ def thread(id):
     thread = Thread.query.get_or_404(id)
 
     if request.method == 'POST':
-        comment_author = request.form['author'].lstrip()
-        comment_content = request.form['content'].lstrip()
+        comment_author = request.form['author']
+        comment_content = request.form['content']
         
         new_comment = Comment(author=comment_author,content=comment_content,thread_id=id)
         thread.comments.append(new_comment)
