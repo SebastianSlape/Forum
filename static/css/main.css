@@ -77,6 +77,7 @@ nav {
 
 .comment-content {
     color: white;
+    white-space: pre-line;
 }
 
 .comment {
@@ -113,6 +114,11 @@ nav {
 
 .content {
     display: block;
+}
+
+.post-content {
+    display: block;
+    white-space: pre-line;
 }
 
 img {
