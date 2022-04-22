@@ -42,6 +42,7 @@
         </div>
         <div class="comments">
             {% for comment in thread.comments %}
+            <hr>
             <div class="comment">
                 {% if moderator == True %}
                 <form action="/thread/{{thread.id}}/comment/{{comment.id}}/delete" class="control" method="POST">
