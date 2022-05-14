@@ -2,6 +2,8 @@
 
 A work-in-progress forum that utilizes Flask and SQL-alchemy to create a basic forum
 
+It is sorted into "static/css" for CSS files, templates for HTML templates and settings for general server settings, like Admin IP's and other server sided options 
+
 ## Features
 
 - Creation of threads (Title, Username and Content)
