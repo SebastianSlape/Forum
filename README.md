@@ -1,8 +1,8 @@
 # Flask Forum ![](https://img.shields.io/badge/dependencies-up%20to%20date-yellow) ![](https://img.shields.io/badge/flask-v1.1.2-blue)
 
-A work-in-progress forum that utilizes Flask and SQL-alchemy to create a basic forum
+A work-in-progress forum that utilizes Flask and SQL-alchemy.
 
-It is sorted into "static/css" for CSS files, templates for HTML templates and settings for general server settings, like Admin IP's and other server sided options 
+The forum code is sorted into "static/css" for CSS files, "templates" for HTML templates and "settings" for general server settings, like Admin IP's and other server sided options with the main code inside of the root.
 
 ## Features
 
