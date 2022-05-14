@@ -1,3 +1,3 @@
 # Forum
  
-https://img.shields.io/github/pipenv/locked/dependency-version/SebastianSlape/Forum/dev/flask
+![](https://img.shields.io/badge/dependencies-up%20to%20date-yellow)
