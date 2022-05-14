@@ -8,6 +8,11 @@
 <div class="content">
     <div class="main">
         <div class="header">
+            {% if moderator == True %}
+            <form action="/delete/{{thread.id}}" class="control" method="POST">
+                <input type="submit" value="Delete Thread" id="submit">
+            </form>
+            {% endif %}
             <div class="meta">
                 <p class="author">
                     {{thread.author}}
@@ -28,11 +33,6 @@
                 </p>
             </div>
         </div>
-        {% if moderator == True %}
-        <form action="/delete/{{thread.id}}" class="control" method="POST">
-            <input type="submit" value="Delete Thread" id="submit">
-        </form>
-        {% endif %}
         <div class="form">
             <form action="/thread/{{thread.id}}" method="POST">
                 <input type="text" name="author" id="author" placeholder="Author">

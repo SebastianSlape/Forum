@@ -97,10 +97,6 @@ nav {
     float: right;
 }
 
-.header {
-    display: inline-block;
-}
-
 .top-comment {
     display: flex;
     color: grey;
