@@ -2,7 +2,7 @@
 
 A work-in-progress forum that utilizes Flask and SQL-alchemy to create a basic forum
 
-## It currently has
+## Features
 
 - Creation of threads (Title, Username and Content)
 - Creation of comments inside of threads (Username and Content)
