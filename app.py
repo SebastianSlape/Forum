@@ -1,17 +1,23 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
+from sqlalchemy_utils.functions import database_exists
 
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///main.db'
 db = SQLAlchemy(app)
 
+admins = ["192.168.0.1"]
+
 def isAdmin(userIP):
-    if userIP == "192.168.0.1" or userIP == "138.199.7.160":
-        return True
+    for ip in admins:
+        if ip == userIP:
+            return True
     return False
+
 
 class Thread(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -33,6 +39,9 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f"Comment('{self.id}', '{self.author}', '{self.date}', '{self.content}')"
+
+if database_exists(app.config["SQLALCHEMY_DATABASE_URI"]) == False:
+    db.create_all()
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
