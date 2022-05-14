@@ -13,6 +13,9 @@
                 <input type="submit" value="Delete Thread" id="submit">
             </form>
             {% endif %}
+            <h2 class="title">
+                {{thread.title}}
+            </h2>
             <div class="meta">
                 <p class="author">
                     {{thread.author}}
@@ -20,48 +23,48 @@
                 <p class="timestamp">
                     {{thread.date.date()}}
                 </p>
-            </div>
-            <h4 class="title">
-                {{thread.title}}
-            </h4>
-            <p class="post-content">
-                {{thread.content}}
-            </p>
-            <div class="meta">
                 <p class="comment-count">
                     {{thread.comments|length}} Comments
                 </p>
             </div>
+            <p class="post-content">
+                {{thread.content}}
+            </p>
         </div>
+        <div class="comments">
+            {% for comment in thread.comments %}
+            <hr>
+            <div class="comment">
+                <div style="float:left; width: 100px;">
+                    <p class="user">
+                        {{comment.author}}
+                    </p>
+                </div>
+                <div class="comment-main">
+                    {% if moderator == True %}
+                    <form action="/thread/{{thread.id}}/comment/{{comment.id}}/delete" class="control" method="POST">
+                        <input type="submit" value="Delete Comment" id="submit">
+                    </form>
+                    {% endif %}
+                    <div class="top-comment">
+                        <p class="comment-ts">
+                            {{thread.date.date()}}
+                        </p>
+                    </div>
+                    <div class="comment-content">
+                        {{comment.content}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
         <div class="form">
             <form action="/thread/{{thread.id}}" method="POST">
                 <input type="text" name="author" id="author" placeholder="Author">
                 <textarea type="text" name="content" id="content" placeholder="Content"></textarea>
                 <input type="submit" value="Create Comment" id="submit">
             </form>
-        </div>
-        <div class="comments">
-            {% for comment in thread.comments %}
-            <hr>
-            <div class="comment">
-                {% if moderator == True %}
-                <form action="/thread/{{thread.id}}/comment/{{comment.id}}/delete" class="control" method="POST">
-                    <input type="submit" value="Delete Comment" id="submit">
-                </form>
-                {% endif %}
-                <div class="top-comment">
-                    <p class="user">
-                        {{comment.author}}
-                    </p>
-                    <p class="comment-ts">
-                        {{thread.date.date()}}
-                    </p>
-                </div>
-                <div class="comment-content">
-                    {{comment.content}}
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 </div>

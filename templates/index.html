@@ -8,9 +8,9 @@
 <div class="content">
     <div class="main">
         {% if moderator == True %}
-        <h4>Hello Janny</h4>
+        <h2>Hello Janny</h2>
         {% endif %}
-        <h4>Make A Thread</h4>
+        <h2>Make A Thread</h2>
         <div class="form">
             <form action="/" method="POST">
                 <input type="text" name="title" id="title" placeholder="Title">
@@ -20,7 +20,7 @@
             </form>
         </div>
         {% if threads|length < 1 %}
-        <h4 style="text-align: center">There are no threads. Create one above!</h4>
+        <h3 style="text-align: center">There are no threads. Create one above!</h3>
         {% else %}
             {% for thread in threads %}
             <hr>
@@ -34,9 +34,9 @@
                             {{thread.date.date()}}
                         </p>
                     </div>
-                    <h4 class="title">
+                    <h3 class="title">
                         {{thread.title}}
-                    </h4>
+                    </h3>
                     <div class="meta">
                         <p class="comment-count">
                             {{thread.comments|length}} Comments

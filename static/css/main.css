@@ -8,7 +8,7 @@ a {
     color: white;
 }
 
-h1, h4, ol {
+h1, h2, h3, ol {
     margin: 0;
     color: white;
 }
@@ -60,19 +60,38 @@ nav {
     font-size: 2.5em;
 }
 
+.header {
+    margin-bottom: 40px;
+}
+
+.form {
+    margin-top: 40px;
+}
+
 .main {
     background-color: #181818;
-    padding: 100px 40px 40px 40px;
+    padding: 100px 16px 16px 16px;
     max-width: 1200px;
     margin: auto;
 }
+
+
 
 .author {
     padding-right: 10px;
 }
 
+.comment {
+    display: flex;
+    margin: 20px 0;
+}
+
+.comment-main {
+    width: 100%;
+}
+
 .comments {
-    margin: 40px 0;
+    margin: 0px 0;
 }
 
 .comment-content {
@@ -81,8 +100,8 @@ nav {
     margin-top: -20px;
 }
 
-.comment {
-    margin: 10px 0;
+.user {
+    margin: 0;
 }
 
 .row {
@@ -128,5 +147,5 @@ img {
 }
 
 .comment-ts {
-    padding-left: 10px;
+    padding-left: 0px;
 }
